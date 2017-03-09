@@ -1,5 +1,6 @@
 package com.in28minutes.login;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class LoginController {
 	
-	//TODO: DI
-	private LoginService service = new LoginService();
+	@Autowired
+	LoginService service;
 	
 	@RequestMapping(value="/login", method = RequestMethod.GET)
 	public String showLoginPage() {
