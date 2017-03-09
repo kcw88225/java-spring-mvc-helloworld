@@ -11,7 +11,8 @@ import com.in28minutes.jee.LoginService;
 @Controller
 public class LoginController {
 	
-	LoginService service = new LoginService();
+	//TODO: DI
+	private LoginService service = new LoginService();
 	
 	@RequestMapping(value="/login", method = RequestMethod.GET)
 	public String showLoginPage() {
