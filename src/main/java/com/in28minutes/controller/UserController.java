@@ -1,6 +1,7 @@
 package com.in28minutes.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -21,10 +22,12 @@ public class UserController {
 	UserService userService;
 	
 	@RequestMapping(value="/getUser", method = RequestMethod.GET)
-	public String getUser(ModelMap model) {
-		UserDetails userDetails = userService.getUserDetails(1);
-		
-		model.put("userName", userDetails.getName());
+	public String getUser() {		
+		List<UserDetails> users = userService.getUserDetailsList(0, 5);
+
+		for(UserDetails user: users) {
+			System.out.println(user.getName());
+		}
 		
 		return "User/getUser";
 	}
@@ -35,15 +38,14 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/addUser", method = RequestMethod.POST)
-	public String addUser(@RequestParam int userId, @RequestParam String name, ModelMap model) {
+	public String addUser(@RequestParam String name, ModelMap model) {
 		UserDetails userDetails = new UserDetails();
-		userDetails.setUserId(userId);
 		userDetails.setName(name);
 		userDetails.setRemark("remark");
 		userDetails.setCreateDate(new Date());
+		
 		userService.addUserDetails(userDetails);
 		
-		model.put("userId", userId);
 		model.put("userName", name);
 		
 		return "User/addUserSuccess";

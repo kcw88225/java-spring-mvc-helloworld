@@ -3,6 +3,6 @@
 <title>User Added</title>
 </head>
 <body>
-    User ID: ${userId}; User Name: ${userName} Added!
+    User Name: ${userName} Added!
 </body>
 </html>
